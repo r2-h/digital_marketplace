@@ -1,9 +1,14 @@
-import { Loader } from "lucide-react"
+import { Card, CardHeader } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export default function Loading() {
+export default function SellRouteLoading() {
   return (
-    <div className="flex items-center gap-5 justify-center">
-      <Loader className="animate-spin" /> Loading...
+    <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <Card>
+        <CardHeader className="h-[1000px]">
+          <Skeleton className="w-full h-full" />
+        </CardHeader>
+      </Card>
     </div>
-  )
+  );
 }

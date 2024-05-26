@@ -1,4 +1,8 @@
+import { SelectCategory } from "@/components/SelectCategory"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 
 export default async function SellPage() {
   return (
@@ -12,7 +16,22 @@ export default async function SellPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-y-10">
-            <div></div>
+            <div className="flex flex-col gap-y-2">
+              <Label htmlFor="email">Name</Label>
+              <Input type="text" placeholder="Name of your product" />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <Label htmlFor="email">Category</Label>
+              <SelectCategory />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <Label htmlFor="email">Price</Label>
+              <Input placeholder="$" type="number" />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <Label htmlFor="email">Small summary</Label>
+              <Textarea placeholder="Please describe your product" />
+            </div>
           </CardContent>
         </form>
       </Card>
