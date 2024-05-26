@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+//   images: {
+//     domains: ["avatar.vercel.sh", "avatar.vercel"],
+//   },
+}
 
-export default nextConfig;
+export default nextConfig
