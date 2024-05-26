@@ -1,4 +1,5 @@
 import { SelectCategory } from "@/components/SelectCategory"
+import { TipTapEditor } from "@/components/Tiptap"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -31,6 +32,10 @@ export default async function SellPage() {
             <div className="flex flex-col gap-y-2">
               <Label htmlFor="email">Small summary</Label>
               <Textarea placeholder="Please describe your product" />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <Label htmlFor="email">Description</Label>
+              <TipTapEditor />
             </div>
           </CardContent>
         </form>
