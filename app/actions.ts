@@ -66,7 +66,7 @@ export async function sellProduct(prevState: any, formData: FormData) {
       description: JSON.parse(validateFields.data.description),
       name: validateFields.data.name,
       price: validateFields.data.price,
-      smallDescripton: validateFields.data.smallDescription,
+      smallDescription: validateFields.data.smallDescription,
       images: validateFields.data.images,
       userId: user.id,
     },

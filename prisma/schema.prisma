@@ -19,14 +19,14 @@ model User {
 }
 
 model Product {
-  id              String        @id @default(uuid())
-  name            String
-  price           Int
-  smallDescripton String
-  description     Json
-  images          String[]
-  productFile     String?
-  category        CategoryTypes
+  id               String        @id @default(uuid())
+  name             String
+  price            Int
+  smallDescription String        @map("smallDescription")
+  description      Json
+  images           String[]
+  productFile      String?
+  category         CategoryTypes
 
   createdAt DateTime @default(now())
 
