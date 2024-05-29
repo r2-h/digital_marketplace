@@ -63,7 +63,7 @@ export const MenuBar = ({ editor }: { editor: Editor | null }) => {
   )
 }
 
-export function TipTapEditor({ setJson, json }: { setJson?: any; json?: JSONContent | null }) {
+export function TipTapEditor({ setJson, json }: { setJson: any; json: JSONContent | null }) {
   const editor = useEditor({
     extensions: [StarterKit],
     content: json,
@@ -73,7 +73,7 @@ export function TipTapEditor({ setJson, json }: { setJson?: any; json?: JSONCont
       },
     },
     onUpdate: ({ editor }) => {
-      setJson?.(editor.getJSON())
+      setJson(editor.getJSON())
     },
   })
 
