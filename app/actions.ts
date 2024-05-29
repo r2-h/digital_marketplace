@@ -11,7 +11,7 @@ export type State = {
 }
 
 const productSchema = z.object({
-  name: z.string().min(3, { message: "The name has to be a min character length of 5" }),
+  name: z.string().min(3, { message: "The name has to be a min character length of 3" }),
   category: z.string().min(1, { message: "Category is required" }),
   price: z.number().min(1, { message: "The Price has to be bigger then 1" }),
   smallDescription: z.string().min(10, { message: "Please summarize your product more" }),
@@ -20,7 +20,20 @@ const productSchema = z.object({
   // productFile: z.string().min(1, { message: "Please upload a zip of your product" }),
 })
 
-export async function SellProduct(prevState: any, formData: FormData) {
+const userSettingsSchema = z.object({
+  firstName: z
+    .string()
+    .min(3, { message: "The first name has to be a min character length of 3" })
+    .or(z.literal(""))
+    .optional(),
+  lastName: z
+    .string()
+    .min(3, { message: "The last name has to be a min character length of 3" })
+    .or(z.literal(""))
+    .optional(),
+})
+
+export async function sellProduct(prevState: any, formData: FormData) {
   const { getUser } = getKindeServerSession()
   const user = await getUser()
 
@@ -47,8 +60,6 @@ export async function SellProduct(prevState: any, formData: FormData) {
     return state
   }
 
-  let dbUser = await prisma.user.findUnique({ where: { id: user.id } })
-
   await prisma.product.create({
     data: {
       category: validateFields.data.category as CategoryTypes,
@@ -64,6 +75,41 @@ export async function SellProduct(prevState: any, formData: FormData) {
   const state: State = {
     status: "success",
     message: "Your product has been created!",
+  }
+  return state
+}
+
+export async function updateUserSettings(prevState: any, formData: FormData) {
+  const { getUser } = getKindeServerSession()
+  const user = await getUser()
+  if (!user) {
+    throw new Error("Something went wrong")
+  }
+
+  const validateFields = userSettingsSchema.safeParse({
+    firstName: formData.get("firstName"),
+    lastName: formData.get("lastName"),
+  })
+  if (!validateFields.success) {
+    const state: State = {
+      status: "error",
+      error: validateFields.error.flatten().fieldErrors,
+      message: "There is a mistake with inputs",
+    }
+    return state
+  }
+
+  await prisma.user.update({
+    where: { id: user.id },
+    data: {
+      firstName: validateFields.data.firstName,
+      lastName: validateFields.data.lastName,
+    },
+  })
+
+  const state: State = {
+    status: "success",
+    message: "Your settings has been updated!",
   }
   return state
 }

@@ -9,18 +9,18 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import { UploadDropzone } from "@/lib/uploadthing"
 import { JSONContent } from "@tiptap/react"
+import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useFormState } from "react-dom"
-import { SellProduct, State } from "../actions"
-import { redirect } from "next/navigation"
+import { State, sellProduct } from "../actions"
 
 export default function SellPage() {
   const initialState: State = { status: undefined, message: "" }
-  const [state, formAction] = useFormState(SellProduct, initialState)
+  const [state, formAction] = useFormState(sellProduct, initialState)
 
   const [json, setJson] = useState<JSONContent | null>(null)
   const [images, setImages] = useState<string[] | null>(null)
-  const [productFile, setProductFile] = useState<string | null>(null)
+  // const [productFile, setProductFile] = useState<string | null>(null)
 
   const { toast } = useToast()
 
