@@ -41,7 +41,7 @@ export default function SellPage() {
   }, [state])
 
   return (
-    <main className="mx-auto max-w-7xl">
+    <main className="mx-auto max-w-7xl mb-5">
       <Card>
         <form action={formAction}>
           <CardHeader>

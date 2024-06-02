@@ -1,6 +1,7 @@
 // import { ProductRow } from "./components/ProductRow"
 
 import { NewestProducts } from "@/components/NewestProducts"
+import { Checkbox } from "@/components/ui/checkbox"
 
 export default function Home() {
   return (
