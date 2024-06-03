@@ -20,7 +20,7 @@ interface iAppProps {
 
 export function ProductCard({ images, id, price, smallDescription, name }: iAppProps) {
   return (
-    <div className="rounded-lg">
+    <div className="rounded-lg mb-10">
       <Carousel className="w-full mx-auto">
         <CarouselContent>
           {images.map((item, index) => (

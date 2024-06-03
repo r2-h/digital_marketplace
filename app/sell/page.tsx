@@ -20,7 +20,7 @@ export default function SellPage() {
 
   const [json, setJson] = useState<JSONContent | null>(null)
   const [images, setImages] = useState<string[] | null>(null)
-  // const [productFile, setProductFile] = useState<string | null>(null)
+  const [productFile, setProductFile] = useState<string | null>(null)
 
   const { toast } = useToast()
 
@@ -106,7 +106,7 @@ export default function SellPage() {
               />
               {state?.error?.["images"] && <p className="text-destructive">{state.error["images"]}</p>}
             </div>
-            {/* <div className="flex flex-col gap-y-2">
+            <div className="flex flex-col gap-y-2">
               <input className="hidden" value={productFile ?? ""} name="productFile" />
               <Label htmlFor="productFile">Product file</Label>
               <UploadDropzone
@@ -128,7 +128,7 @@ export default function SellPage() {
               {state?.error?.["productFile"] && (
                 <p className="text-destructive">{state.error["productFile"]}</p>
               )}
-            </div> */}
+            </div>
           </CardContent>
           <CardFooter className="mt-5">
             <SubmitButton />

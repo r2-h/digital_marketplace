@@ -2,6 +2,7 @@
 import prisma from "@/lib/db"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { type CategoryTypes } from "@prisma/client"
+import { revalidatePath } from "next/cache"
 import { z } from "zod"
 
 export type State = {
@@ -17,7 +18,7 @@ const productSchema = z.object({
   smallDescription: z.string().min(10, { message: "Please summarize your product more" }),
   description: z.string().min(10, { message: "Description is required" }),
   images: z.array(z.string(), { message: "Images are required" }),
-  // productFile: z.string().min(1, { message: "Please upload a zip of your product" }),
+  productFile: z.string().min(1, { message: "Please upload a zip of your product" }),
 })
 
 const userSettingsSchema = z.object({
@@ -48,7 +49,7 @@ export async function sellProduct(prevState: any, formData: FormData) {
     smallDescription: formData.get("smallDescription"),
     description: formData.get("description"),
     images: JSON.parse(formData.get("images") as string),
-    // productFile: formData.get("productFile"),
+    productFile: formData.get("productFile"),
   })
 
   if (!validateFields.success) {
@@ -67,6 +68,7 @@ export async function sellProduct(prevState: any, formData: FormData) {
       name: validateFields.data.name,
       price: validateFields.data.price,
       smallDescription: validateFields.data.smallDescription,
+      productFile: validateFields.data.productFile,
       images: validateFields.data.images,
       userId: user.id,
     },
@@ -76,6 +78,7 @@ export async function sellProduct(prevState: any, formData: FormData) {
     status: "success",
     message: "Your product has been created!",
   }
+  revalidatePath("/")
   return state
 }
 

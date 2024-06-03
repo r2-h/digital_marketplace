@@ -18,7 +18,7 @@ export const navbarLinks = [
   {
     id: 2,
     name: "Ui Kits",
-    href: "/products/ui-kit",
+    href: "/products/uikit",
   },
   {
     id: 3,
