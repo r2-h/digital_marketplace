@@ -18,7 +18,7 @@ const productSchema = z.object({
   smallDescription: z.string().min(10, { message: "Please summarize your product more" }),
   description: z.string().min(10, { message: "Description is required" }),
   images: z.array(z.string(), { message: "Images are required" }),
-  productFile: z.string().min(1, { message: "Please upload a zip of your product" }),
+  productFile: z.string().min(1, { message: "Please upload a zip of your product" }).optional(),
 })
 
 const userSettingsSchema = z.object({
@@ -49,7 +49,7 @@ export async function sellProduct(prevState: any, formData: FormData) {
     smallDescription: formData.get("smallDescription"),
     description: formData.get("description"),
     images: JSON.parse(formData.get("images") as string),
-    productFile: formData.get("productFile"),
+    productFile: formData.get("productFile") || undefined,
   })
 
   if (!validateFields.success) {

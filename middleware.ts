@@ -6,5 +6,5 @@ export default function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/settings"],
+  matcher: ["/settings", "/sell", "/my-products"],
 }

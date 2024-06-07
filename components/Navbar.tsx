@@ -1,11 +1,11 @@
-import Link from "next/link"
-import { RegisterLink, LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components"
-import { NavbarLinks } from "./NavbarLinks"
-import { Button } from "./ui/button"
-import { MobileMenu } from "./MobileMenu"
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
-import { UserNav } from "./UserNav"
+import Link from "next/link"
+import { MobileMenu } from "./MobileMenu"
+import { NavbarLinks } from "./NavbarLinks"
 import { ThemeSwitcher } from "./ThemSwitcher"
+import { UserNav } from "./UserNav"
+import { Button } from "./ui/button"
 
 export async function Navbar() {
   const { getUser } = getKindeServerSession()

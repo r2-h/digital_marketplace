@@ -19,7 +19,7 @@ export const SettingsForm = ({ firstName, lastName, email }: Props) => {
   const initialState: State = { status: undefined, message: "" }
   const [state, formAction] = useFormState(updateUserSettings, initialState)
 
-  const { toast } = useToast() 
+  const { toast } = useToast()
 
   useEffect(() => {
     if (state?.status === "success") {
