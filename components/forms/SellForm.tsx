@@ -31,7 +31,6 @@ export function SellForm() {
         title: state?.status,
         description: state?.message,
       })
-      redirect("/")
     } else if (state?.status === "error") {
       toast({
         variant: "destructive",
@@ -86,7 +85,7 @@ export function SellForm() {
           <Label htmlFor="images">Product images</Label>
           <UploadDropzone
             endpoint="imageUploader"
-            onClientUploadComplete={(res) => { 
+            onClientUploadComplete={(res) => {
               setImages(res.map((item) => item.url))
               toast({
                 title: "Yor images have been uploaded",

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { unstable_noStore as noStore } from "next/cache"
 import prisma from "@/lib/db"
 import { SubmitButton } from "@/components/SubmitButton"
-import { CreateStripeAccoutnLink } from "../actions"
+import { CreateStripeAccoutnLink, GetStripeDashboardLink } from "../actions"
 
 async function getData(userId: string) {
   const data = await prisma.user.findUnique({
@@ -46,11 +46,11 @@ export default async function BillingPage() {
             </form>
           )}
 
-          {/* {data?.stripeConnectedLinked === true && (
+          {data?.stripeConnectedLinked === true && (
             <form action={GetStripeDashboardLink}>
               <SubmitButton>View Dashboard</SubmitButton>
             </form>
-          )} */}
+          )}
         </CardContent>
       </Card>
     </section>
