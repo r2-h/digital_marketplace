@@ -2,6 +2,7 @@ import { SettingsForm } from "@/components/forms/SettingsForm"
 import { Card } from "@/components/ui/card"
 import prisma from "@/lib/db"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import { unstable_noStore as noStore } from "next/cache"
 
 async function getData() {
   const { getUser } = getKindeServerSession()
@@ -22,6 +23,7 @@ async function getData() {
 }
 
 export default async function SettingsPage() {
+  noStore()
   const data = await getData()
 
   return (
