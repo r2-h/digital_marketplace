@@ -1,5 +1,6 @@
+import { BuyProduct } from "@/app/actions"
 import { ProductDescription } from "@/components/ProductDescription"
-import { JSONContent } from "@tiptap/react"
+import { BuyButton, SubmitButton } from "@/components/SubmitButton"
 import {
   Carousel,
   CarouselContent,
@@ -8,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import prisma from "@/lib/db"
+import { JSONContent } from "@tiptap/react"
 import Image from "next/image"
 
 async function getData(id: string) {
@@ -59,10 +61,10 @@ export default async function ProductPage({ params }: { params: { id: string } }
         <h1 className="text-2xl font-extrabold tracking-tight text-secondary-foreground sm:text-3xl">
           {data?.name}
         </h1>
-        <p className="mt-2 text-muted-foreground">{data?.smallDescription}</p>
-        <form action={"BuyProduct"}>
+        <p className="mt-2 mb-4 text-muted-foreground">{data?.smallDescription}</p>
+        <form action={BuyProduct}>
           <input type="hidden" name="id" value={data?.id} />
-          {/* <BuyButton price={data?.price as number} /> */}
+          <BuyButton price={data?.price as number} />
         </form>
         <div className="border-t border-gray-200 my-10 py-10 border-b">
           <div className="grid grid-cols-2 w-full gap-y-3">
