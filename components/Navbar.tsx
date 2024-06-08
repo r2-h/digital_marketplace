@@ -16,7 +16,7 @@ export async function Navbar() {
       <div className="flex gap-1 items-center md:col-span-3">
         <Link href="/">
           <h1 className="text-2xl font-semibold ">
-            Rex<span className="text-primary">UI</span>
+            Rx<span className="text-primary">UI</span>
           </h1>
         </Link>
         <ThemeSwitcher />
