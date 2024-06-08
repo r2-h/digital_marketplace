@@ -1,13 +1,17 @@
 import ProductEmail from "@/components/ProductEmail"
 import { stripe } from "@/lib/stripe"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { headers } from "next/headers"
 import { Resend } from "resend"
+import { unstable_noStore as noStore } from "next/cache"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: Request) {
+  noStore()
   const body = await req.text()
-
+  const { getUser } = getKindeServerSession()
+  const user = await getUser()
   const signature = headers().get("Stripe-Signature") as string
 
   let event
@@ -26,7 +30,7 @@ export async function POST(req: Request) {
 
       const { data, error } = await resend.emails.send({
         from: "RxUI <onboarding@resend.dev>",
-        to: ["hareksian23@gmail.com"],
+        to: [user?.email || "hareksian23@gmail.com"],
         subject: "Your Product from RxUI",
         react: ProductEmail({
           link: link as string,
